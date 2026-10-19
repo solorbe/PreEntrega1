@@ -1,0 +1,33 @@
+import "dotenv/config";
+
+// Lista de variables de entorno que la app necesita sí o sí para funcionar. 
+// Si en el futuro agregamos una nueva variable obligatoria, alcanza con sumarla acá.
+const variablesRequeridas = ["PORT"] //, "NODE_ENV", "MONGO_URI"];
+
+// Chequeamos ACÁ, apenas arranca el proceso, que estén todas las variables necesarias. 
+// Si falta alguna, avisamos con un mensaje claro y cortamos la ejecución inmediatamente.
+const variablesFaltantes = variablesRequeridas.filter(
+  (nombre) => !process.env[nombre],
+);
+
+if (variablesFaltantes.length > 0) {
+  console.error(
+    "❌ Faltan variables de entorno obligatorias:",
+    variablesFaltantes.join(", "),
+  );
+  console.error(
+    "Revisá tu archivo .env (podés basarte en .env.example) y volvé a intentar.",
+  );
+  // process.exit(1) termina el proceso de Node inmediatamente con un código de salida distinto de 0, 
+  // por convención indica que el programa terminó por un error.
+  process.exit(1);
+}
+
+// lo que viene de process.env es siempre un string, incluso si en el .env escribimos un número (PORT=8080). 
+// Por eso convertimos explícitamente PORT a Number antes de usarlo; si no lo hiciéramos, más adelante podríamos tener bugs raros al mezclar strings con números (por ejemplo, al compararlos o al pasarlos a otras APIs que esperan un número).
+
+export const config = {
+  port: Number(process.env.PORT),
+  nodeEnv: process.env.NODE_ENV,
+  mongoUri: process.env.MONGO_URI,
+};
