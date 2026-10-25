@@ -1,16 +1,16 @@
-import dotenv from "dotenv";
-import app from "./app.js";
-import { config } from "./config/env.config.js";
-//import { connectDB } from './config/database.config.js';
-//import { Server } from "socket.io";
+// import dotenv from "dotenv";
+// import app from "./app.js";
+// import { config } from "./config/env.config.js";
+// import { connectDB } from './config/database.config.js';
+// //import { Server } from "socket.io";
 
-dotenv.config();
+// dotenv.config();
 
-const PORT = config.port;
+// const PORT = config.port;
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Servidor escuchando en http://localhost:${PORT}`);
+// });
 
 // const startServer = async () => {
 //   await connectDB();
@@ -18,11 +18,12 @@ app.listen(PORT, () => {
 
 // startServer();
 
-// const io = new Server(httpServer);
-// app.set('io', io);
-// io.on('connection', (socket) => {
-//     console.log('Cliente conectado:', socket.id);
-//     socket.on('disconnect', () => {
-//         console.log('Cliente desconectado:', socket.id);
-//     });
-// });
+import app from './app.js';
+import { config } from './config/config.js';
+import { connectDB } from './config/database.js';
+
+await connectDB(config.mongoUrl);
+
+app.listen(config.port, () => {
+  console.log(`Servidor escuchando en el puerto ${config.port}`);
+});
