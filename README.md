@@ -18,7 +18,7 @@ Se elige esta temática para realizar las entregas solicitadas en el curso de Ba
 - Session
 - Ticket (reservas de cada event)
 
-## Roles del proyecto a trabjar en las próximas entregas
+## Roles del proyecto a trabajar en las próximas entregas
 
 **Admin**: con permisos generales sobre el sistema.
 Podrá gestionar usuarios, categorías, eventos e inscripciones.
