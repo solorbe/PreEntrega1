@@ -66,9 +66,7 @@ Middlewares: procesan validaciones intermedias.-->
 Con el servidor corriendo (por defecto en `http://localhost:3000`, salvo que haya cambiado `PORT` en `.env`):
 
 | Método | URL | Respuesta esperada |
-
 |---|---|---|
-
 | GET | `http://localhost:3000/api/health` | {"status": "ok", "message": "Servidor activo"} |
 | GET | `http://localhost:3000/api/sessions` | [] |
 | GET | `http://localhost:3000/api/events` | [] |
